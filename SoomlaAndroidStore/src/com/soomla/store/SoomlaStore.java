@@ -64,6 +64,7 @@ import java.util.List;
  */
 public class SoomlaStore {
 
+    @SuppressWarnings("unused")
     public static final String VERSION = "3.6.13";
 
     /**
@@ -266,9 +267,9 @@ public class SoomlaStore {
                                     public void success(List<IabSkuDetails> skuDetails) {
                                         SoomlaUtils.LogDebug(TAG, "Market items details refreshed");
 
-                                        List<MarketItem> marketItems = new ArrayList<MarketItem>();
+                                        List<MarketItem> marketItems = new ArrayList<>();
                                         if (skuDetails.size() > 0) {
-                                            List<VirtualItem> virtualItems = new ArrayList<VirtualItem>();
+                                            List<VirtualItem> virtualItems = new ArrayList<>();
 
                                             for (IabSkuDetails iabSkuDetails : skuDetails) {
                                                 String productId = iabSkuDetails.getSku();
@@ -474,8 +475,7 @@ public class SoomlaStore {
         if (mInAppBillingService == null) {
             SoomlaUtils.LogDebug(TAG, "Searching for the attached IAB Service.");
 
-            Class<?> aClass = null;
-            aClass = tryFetchIabService();
+            Class<?> aClass = tryFetchIabService();
             if (aClass == null) {
                 String err = "You don't have a billing service attached. " +
                         "Decide which billing service you want, add it to AndroidManifest.xml " +
@@ -650,7 +650,7 @@ public class SoomlaStore {
     /**
      * Posts an unexpected error event saying the purchase failed.
      *
-     * @param errorCode
+     * @param errorCode error code
      * @param message error message.
      */
     private void handleErrorResult(UnexpectedStoreErrorEvent.ErrorCode errorCode, String message) {

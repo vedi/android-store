@@ -107,11 +107,11 @@ public abstract class IabHelper {
      *
      * @param listener The listener to notify when the restore purchases process finishes
      */
-    public void restorePurchasesAsync(RestorePurchasessFinishedListener listener) {
+    public void restorePurchasesAsync(RestorePurchasesFinishedListener listener) {
         checkSetupDoneAndThrow("restorePurchases");
         flagStartAsync("restore purchases");
 
-        mRestorePurchasessFinishedListener = listener;
+        mRestorePurchasesFinishedListener = listener;
         restorePurchasesAsyncInner();
     }
 
@@ -152,7 +152,7 @@ public abstract class IabHelper {
          *
          * @param result The result of the setup process.
          */
-        public void onIabSetupFinished(IabResult result);
+        void onIabSetupFinished(IabResult result);
     }
 
     /**
@@ -168,20 +168,20 @@ public abstract class IabHelper {
          * @param result The result of the purchase.
          * @param info The purchase information (null if purchase failed)
          */
-        public void onIabPurchaseFinished(IabResult result, IabPurchase info);
+        void onIabPurchaseFinished(IabResult result, IabPurchase info);
     }
 
     /**
      * Callback for restore purchases.
      */
-    public interface RestorePurchasessFinishedListener {
+    public interface RestorePurchasesFinishedListener {
         /**
          * Called to notify that an restore purchases operation completed.
          *
          * @param result The result of the operation.
          * @param inv The inventory.
          */
-        public void onRestorePurchasessFinished(IabResult result, IabInventory inv);
+        void onRestorePurchasesFinished(IabResult result, IabInventory inv);
     }
 
     /**
@@ -194,7 +194,7 @@ public abstract class IabHelper {
          * @param result The result of the operation.
          * @param inv The inventory.
          */
-        public void onFetchSkusDetailsFinished(IabResult result, IabInventory inv);
+        void onFetchSkusDetailsFinished(IabResult result, IabInventory inv);
     }
 
 
@@ -250,14 +250,14 @@ public abstract class IabHelper {
         // make sure to end the async operation...
         flagEndAsync();
 
-        if (mRestorePurchasessFinishedListener != null) {
+        if (mRestorePurchasesFinishedListener != null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.post(new Runnable() {
                 public void run() {
                     IabResult result = new IabResult(IabResult.BILLING_RESPONSE_RESULT_OK, "IabInventory restore successful.");
-                    mRestorePurchasessFinishedListener.onRestorePurchasessFinished(
+                    mRestorePurchasesFinishedListener.onRestorePurchasesFinished(
                             result, inventory);
-                    mRestorePurchasessFinishedListener = null;
+                    mRestorePurchasesFinishedListener = null;
                 }
             });
         }
@@ -273,13 +273,13 @@ public abstract class IabHelper {
 
         flagEndAsync();
 
-        if (mRestorePurchasessFinishedListener != null) {
+        if (mRestorePurchasesFinishedListener != null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    mRestorePurchasessFinishedListener.onRestorePurchasessFinished(result, null);
-                    mRestorePurchasessFinishedListener = null;
+                    mRestorePurchasesFinishedListener.onRestorePurchasesFinished(result, null);
+                    mRestorePurchasesFinishedListener = null;
                 }
             });
         }
@@ -511,7 +511,7 @@ public abstract class IabHelper {
     private OnIabPurchaseFinishedListener mPurchaseListener;
     // The listener registered on restore purchases, which we have to call back when
     // the restore process finishes.
-    private RestorePurchasessFinishedListener mRestorePurchasessFinishedListener;
+    private RestorePurchasesFinishedListener mRestorePurchasesFinishedListener;
     // The listener registered on restore purchases, which we have to call back when
     // the restore process finishes.
     private FetchSkusDetailsFinishedListener mFetchSkusDetailsFinishedListener;
