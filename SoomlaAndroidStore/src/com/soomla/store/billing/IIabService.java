@@ -119,4 +119,11 @@ public interface IIabService {
      */
     void configVerifyPurchases(Map<String, Object> verifyPurchases);
 
+    /**
+     * Checks if in-app billing service should verify purchases
+     *
+     * @return true if service should verify purchases, false otherwise
+     */
+    boolean shouldVerifyPurchases();
+
 }
