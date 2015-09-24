@@ -16,8 +16,6 @@
 
 package com.soomla.store.billing;
 
-import com.soomla.store.domain.PurchasableVirtualItem;
-
 import java.util.List;
 import java.util.Map;
 

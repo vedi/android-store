@@ -34,14 +34,14 @@ public class IabCallbacks {
           * @param alreadyInBg true if the listener has already been initialized and is in
           *                    background, false otherwise.
           */
-        public void success(boolean alreadyInBg);
+         void success(boolean alreadyInBg);
 
          /**
           * Performs the following function upon failure and prints the given message.
           *
           * @param message reason for failure
           */
-        public void fail(String message);
+         void fail(String message);
     }
 
      /**
@@ -54,28 +54,28 @@ public class IabCallbacks {
           *
           * @param purchase the successful purchase
           */
-        public void success(IabPurchase purchase);
+         void success(IabPurchase purchase);
 
          /**
           * The user has cancelled a purchase.
           *
           * @param purchase the cancelled purchase
           */
-        public void cancelled(IabPurchase purchase);
+         void cancelled(IabPurchase purchase);
 
          /**
           * The user tries to buy an item he/she already owns.
           *
           * @param purchase the purchase that is already owned
           */
-        public void alreadyOwned(IabPurchase purchase);
+         void alreadyOwned(IabPurchase purchase);
 
          /**
           * The user fails to make the purchase.
           *
           * @param message reason for failure
           */
-        public void fail(String message);
+         void fail(String message);
     }
 
      /**
@@ -88,14 +88,14 @@ public class IabCallbacks {
           *
           * @param purchases list of purchases from he/she inventory
           */
-        public void success(List<IabPurchase> purchases);
+         void success(List<IabPurchase> purchases);
 
          /**
           * Query inventory fails.
           *
           * @param message reason for failure
           */
-        public void fail(String message);
+         void fail(String message);
     }
 
      /**
@@ -108,13 +108,13 @@ public class IabCallbacks {
          *
          * @param skuDetails list of skus details
          */
-        public void success(List<IabSkuDetails> skuDetails);
+        void success(List<IabSkuDetails> skuDetails);
         /**
          * Query inventory fails.
          *
          * @param message reason for failure
          */
-         public void fail(String message);
+        void fail(String message);
     }
 
 
@@ -127,14 +127,14 @@ public class IabCallbacks {
           *
           * @param purchase consumed purchase
           */
-        public void success(IabPurchase purchase);
+         void success(IabPurchase purchase);
 
          /**
           * Purchase consumption fails
           *
           * @param message reason for failure
           */
-        public void fail(String message);
+         void fail(String message);
     }
 
 }
